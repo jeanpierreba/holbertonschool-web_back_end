@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 """ contains an asynchronous coroutine """
 import asyncio
 import time
@@ -6,10 +7,9 @@ import time
 wait_n = __import__('1-concurrent_coroutines').wait_n
 
 
-def measure_item(n: int, max_delay: int) -> float:
-    """ returns total_time / n """
-    start = time.perf_counter()
+def measure_time(n: int, max_delay: int) -> float:
+    """ measures the total execution time for wait_n(n, max_delay) """
+    start = time.time()
     asyncio.run(wait_n(n, max_delay))
-    end = time.perf_counter()
-    total = end - start
-    return total / n
+    end = time.time() - start
+    return end / n
