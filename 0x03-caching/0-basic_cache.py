@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-""" Contains clase BasicCache """
+""" Contains clase BasicCache that inherits from basecaching """
 BaseCaching = __import__('base_caching').BaseCaching
 
 
 class BasicCache(BaseCaching):
-    """ Definition of the class """
+    """ Basic definition of the class """
 
     def put(self, key, item):
         """ assign to the dictionary self.cache_data
