@@ -15,13 +15,14 @@ class FIFOCache(BaseCaching):
         """ assign to the dictionary self.cache_data
         the item value for the key """
         if key and item:
-            self.cache_data[key] = item
-            if len(self.cache_data) > BaseCaching.MAX_ITEMS:
-                discardedItem = self.keysIndex.pop(0)
-                del self.cache_data[discardedItem]
-                print("DISCARD: {}".format(discardedItem))
-            self.cache_cata[key] = item
+            if self.cache_data.get(key):
+                self.keysIndex.remove(key)
             self.keysIndex.append(key)
+            self.cache_data[key] = item
+            if len(self.keysIndex) > self.MAX_ITEMS:
+                deleted = self.keysIndex.pop(0)
+                self.cache_data.pop(deleted)
+                print("DISCARD: {}".format(deleted))
 
     def get(self, key):
         """ return the value in self.cache_data linked to key """
