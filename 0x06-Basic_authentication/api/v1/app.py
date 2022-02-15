@@ -26,7 +26,8 @@ elif getenv("AUTH_TYPE") == "basic_auth":
 
 @app.errorhandler(401)
 def unauthorized(error) -> str:
-    """ Unauthorized error handler """
+    """ Unauthorized error handler
+    """
     return jsonify({"error": "Unauthorized"}), 401
 
 
