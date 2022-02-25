@@ -1,4 +1,4 @@
-#!/use/bin/env python3
+#!/usr/bin/env python3
 """ authentication module """
 
 from cgitb import reset
