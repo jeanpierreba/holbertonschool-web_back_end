@@ -1,11 +1,11 @@
-const fs = requiere('fs');
+const fs = require('fs');
 
-function countStudents (path) {
+function countStudents(path) {
   let filesystem;
   try {
     filesystem = fs.readFileSync(path, 'utf-8').trim().split('\n');
   } catch (e) {
-    throw Error('Cannot load the database');
+    throw new Error('Cannot load the database');
   }
   let counter = 0;
   const tmp = f.slice(1).reduce((pat, c) => {
