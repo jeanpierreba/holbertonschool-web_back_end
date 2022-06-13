@@ -23,18 +23,18 @@ class Config(object):
 
 
 def get_user() -> dict:
-	""" returns a user dictionary or None """
-	user_logged = request.args.get('login_as')
-	if user_logged and int(user_logged) in users:
-		return users[int(user_logged)]
-	return None
+    """ returns a user dictionary or None """
+    user_logged = request.args.get('login_as')
+    if user_logged and int(user_logged) in users:
+        return users[int(user_logged)]
+    return None
 
 
 @app.before_request
 def before_request():
-	""" find a user if any """
-	if get_user():
-		g.user = get_user()
+    """ find a user if any """
+    user = get_user()
+    g.user = user
 
 
 @babel.localeselector
