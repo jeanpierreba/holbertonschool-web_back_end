@@ -22,7 +22,7 @@ class Config(object):
     BABEL_DEFAULT_TIMEZONE = 'UTC'
 
 
-def get_user():
+def get_user() -> dict:
 	""" returns a user dictionary or None """
 	user_logged = request.args.get('login_as')
 	if user_logged and int(user_logged) in users:
