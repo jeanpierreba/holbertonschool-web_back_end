@@ -2,7 +2,7 @@
 
 """ basic Flask app """
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, g
 from flask_babel import Babel
 app = Flask(__name__)
 babel = Babel(app)
@@ -11,17 +11,20 @@ babel = Babel(app)
 class Config(object):
     """ Babel configuration class """
     LANGUAGES = ["en", "fr"]
-
-
-app.config.from_object(Config)
-Babel.default_locale = 'en'
-Babel.default_timezone = 'UTC'
+    BABEL_DEFAULT_LOCALE = 'en'
+    BABEL_DEFAULT_TIMEZONE = 'UTC'
 
 
 @babel.localeselector
 def get_locale():
-	""" determine the best match """
-	return request.accept_languages.best_match(app.config['LANGUAGES'])
+    """ determine the best match """
+    user = getattr(g, 'user', None)
+    if user is not None:
+        return user.locale
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
+
+
+app.config.from_object(Config)
 
 
 @app.route("/", methods=["GET"])
