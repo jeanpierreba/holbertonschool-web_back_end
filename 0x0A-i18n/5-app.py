@@ -55,7 +55,7 @@ app.config.from_object(Config)
 @app.route("/", methods=["GET"])
 def index():
     """ returns the index """
-    return render_template('4-index.html')
+    return render_template('5-index.html')
 
 
 if __name__ == "__main__":
